@@ -9,7 +9,7 @@ class LoginComponentController extends GetxController {
 
   LoginComponentController({required LoginUseCase loginUseCase})
       : _loginUseCase = loginUseCase;
-  final loginFormStateKey = GlobalKey<FormState>();
+  var loginFormStateKey = GlobalKey<FormState>();
 
   final emailTextController = TextEditingController();
   final passwordTextController = TextEditingController();
@@ -58,6 +58,7 @@ class LoginComponentController extends GetxController {
   }
 
   Future<void> login() async {
+
     isLoading.value = true;
     errorMessages.clear();
     final email = emailTextController.text.trim();

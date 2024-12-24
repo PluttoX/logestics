@@ -16,36 +16,39 @@ class LoginComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var dpr= MediaQuery.of(context).devicePixelRatio;
+    var screenWidth = MediaQuery.of(context).size.width;
+    var screenHeight = MediaQuery.of(context).size.height;
     final textTheme = Theme.of(context).textTheme;
     final colorScheme = Theme.of(context).colorScheme;
-    return Padding(
-      padding: EdgeInsets.only(left: 437/ dpr),
-      child: SizedBox(
-        width: 552 /  dpr,
-       // height: MediaQuery.sizeOf(context).height,
-        child: Form(
-          key: controller.loginFormStateKey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                AppAuthenticationTextsExpended.welcomeBack,
-                style: Theme.of(context).textTheme.displayLarge,
-              ),
-              SizedBox(
-                height: 28 /  dpr,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
+    return SingleChildScrollView(
+      child: Form(
+        key: controller.loginFormStateKey,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              AppAuthenticationTextsExpended.welcomeBack,
+              style: Theme.of(context).textTheme.displayLarge?.copyWith(fontSize: screenHeight*0.009*screenHeight*0.009 ),
+            ),
+            SizedBox(
+              height: screenWidth * 0.01,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Flexible(
+                  child: Text(
                     AppAuthenticationTextsExpended.dontHaveAccount,
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         color: Theme.of(context)
                             .colorScheme
-                            .onTertiaryFixedVariant),
+                            .onTertiaryFixedVariant
+                    ,fontSize: screenHeight*0.0057*screenHeight*0.0057
+                    ),
                   ),
-                  TextButton(
+                ),
+                Flexible(
+                  child: TextButton(
                     onPressed: () {
                       //Todo 4 content us use case
                     },
@@ -54,111 +57,134 @@ class LoginComponent extends StatelessWidget {
                       style: Theme.of(context)
                           .textTheme
                           .titleLarge
-                          ?.copyWith(color: Get.theme.colorScheme.primary),
+                          ?.copyWith(color: Get.theme.colorScheme.primary,
+                          fontSize: screenHeight*0.0057*screenHeight*0.0057
+                      ),
                     ),
                   ),
-                ],
-              ),
-              SizedBox(
-                height: 56 / dpr,
-              ),
-              Obx(
-                () => AppTextFormField(
-                  controller: controller.emailTextController,
-                  hintText: AppAuthenticationTextsExpended.emailHint,
-                  labelText: AppAuthenticationTextsExpended.emailLabel,
-                  validator: controller.emailValidator,
-                  errorMessage: controller.errorMessages['email'] ?? '',
                 ),
+              ],
+            ),
+            SizedBox(
+              height: screenWidth * 0.02,
+            ),
+            Obx(
+              () => AppTextFormField(
+                controller: controller.emailTextController,
+                hintText: AppAuthenticationTextsExpended.emailHint,
+                labelText: AppAuthenticationTextsExpended.emailLabel,
+                validator: controller.emailValidator,
+                errorMessage: controller.errorMessages['email'] ?? '',
               ),
-              SizedBox(
-                height: 31 / dpr,
+            ),
+            SizedBox(
+              height: screenHeight*.03,
+            ),
+            Obx(
+              () => AppTextFormField(
+                controller: controller.passwordTextController,
+                hintText: AppAuthenticationTextsExpended.passwordHint,
+                labelText: AppAuthenticationTextsExpended.passwordLabel,
+                isObscure: !controller.isShowPassword.value,
+                obscureCallback: controller.toggleShowPassword,
+                validator: controller.passwordValidator,
+                errorMessage: controller.errorMessages['password'] ?? '',
               ),
-              Obx(
-                () => AppTextFormField(
-                  controller: controller.passwordTextController,
-                  hintText: AppAuthenticationTextsExpended.passwordHint,
-                  labelText: AppAuthenticationTextsExpended.passwordLabel,
-                  isObscure: !controller.isShowPassword.value,
-                  obscureCallback: controller.toggleShowPassword,
-                  validator: controller.passwordValidator,
-                  errorMessage: controller.errorMessages['password'] ?? '',
-                ),
-              ),
-              SizedBox(
-                height: 15 /dpr,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  TextButton(
+            ),
+            SizedBox(
+              height: screenHeight*.04,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Flexible(
+                  child: TextButton(
                     onPressed: controller.toggleRememberMeMark,
                     child: Obx(
                       () => Row(
                         children: [
-                          Icon(
-                            Icons.check_circle,
-                            color: controller.isRememberMeMark.value
-                                ? colorScheme.primary
-                                : colorScheme.onTertiaryFixedVariant,
-                          ),
-                          Text(
-                            AppAuthenticationTextsExpended.remeber,
-                            style: textTheme.labelSmall?.copyWith(
+                          Flexible(
+                            child: Icon(
+                              Icons.check_circle,
                               color: controller.isRememberMeMark.value
                                   ? colorScheme.primary
                                   : colorScheme.onTertiaryFixedVariant,
+                              size:  screenHeight * 0.0044 * screenWidth * 0.0044,
+                            ),
+                          ),
+                          Flexible(
+                            child: Text(
+                              AppAuthenticationTextsExpended.remeber,
+                              style: textTheme.labelSmall?.copyWith(
+                                color: controller.isRememberMeMark.value
+                                    ? colorScheme.primary
+                                    : colorScheme.onTertiaryFixedVariant,
+                                  fontSize: screenHeight*0.0048*screenHeight*0.0048
+                              ),
                             ),
                           )
                         ],
                       ),
                     ),
                   ),
-                  TextButton(
+                ),
+                Flexible(
+                  child: TextButton(
                       onPressed: () {
                         Get.toNamed(AppRoutes.forgotPassword);
                       },
-                      child: Text(AppAuthenticationTextsExpended.forgetPassword))
-                ],
-              ),
-              SizedBox(
-                height: 15 /dpr,
-              ),
-              Obx(() => controller.errorMessages['general'] == null
-                  ? SizedBox()
-                  : controller.errorMessages['general']!.isEmpty
-                      ? SizedBox()
-                      : AppErrorContainer(
-                          errorMessage:
-                              controller.errorMessages['general'] ?? '')),
-              SizedBox(
-                height: 33 /dpr,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  AppSecondaryFilledButton(
-                    labelText: AppAuthenticationTextsExpended.demo,
-                    onPressed: () {
-                      //Todo demo login logic
-                      Get.find<ThemeController>().toggleTheme();
-                    },
-                  ),
-                  Obx(
-                    () => AppPrimaryFilledButton(
-                      label: controller.isLoading.value
-                          ? CircularProgressIndicator(
-                              color: colorScheme.onPrimary,
-                            )
-                          : Text(AppAuthenticationTextsExpended.signeIn),
-                      onPressed:
-                          controller.isLoading.value ? () {} : controller.login,
+                      child: Text(AppAuthenticationTextsExpended.forgetPassword,
+                      style:textTheme.titleLarge?.copyWith(
+                          fontSize: screenHeight*0.0057*screenHeight*0.0057,
+                        color: colorScheme.primary
+                      ),
+                      ),),
+                )
+              ],
+            ),
+            SizedBox(
+              height: screenHeight*.02,
+            ),
+            Obx(() => controller.errorMessages['general'] == null
+                ? SizedBox()
+                : controller.errorMessages['general']!.isEmpty
+                    ? SizedBox()
+                    : AppErrorContainer(
+                        errorMessage:
+                            controller.errorMessages['general'] ?? '')),
+            SizedBox(
+              height: screenHeight*.03,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                AppSecondaryFilledButton(
+                  labelText: AppAuthenticationTextsExpended.demo,
+                  onPressed: () {
+                    //Todo demo login logic
+                    Get.find<ThemeController>().toggleTheme();
+                  },
+                ),
+                Obx(
+                  () => AppPrimaryFilledButton(
+                    size:Size(screenWidth * 0.14 , screenHeight * 0.08),
+                    label: controller.isLoading.value
+                        ? CircularProgressIndicator(
+                            color: colorScheme.onPrimary,
+                          )
+                        : Text(AppAuthenticationTextsExpended.signeIn,
+                     style: textTheme.titleLarge?.copyWith(
+                        fontSize:  screenHeight * 0.0046 * screenWidth * 0.0046,
+                        color: colorScheme.onPrimary
                     ),
+                    ),
+                    onPressed:
+                        controller.isLoading.value ? () {} : controller.login,
                   ),
-                ],
-              )
-            ],
-          ),
+                ),
+              ],
+            )
+          ],
         ),
       ),
     );

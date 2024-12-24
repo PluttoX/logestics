@@ -49,6 +49,7 @@ class AppAuthenticationTextsExpended {
   static const String resetEmailTitle = 'Reset Email Sent';
   static const String resetEmailMessage = 'Click here:';
   static const String errorOpeningLink = 'Error opening the link.';
+  static const String companySigne = '@2025 PluttoX Software House';
 
 
 

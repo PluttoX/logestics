@@ -6,9 +6,9 @@ import '../presentation/controllers/login_component_controller.dart';
 class LoginComponentControllerBinding extends Bindings{
   @override
   void dependencies() {
-    Get.lazyPut(()=>AuthRepositoryImpl(Get.find<FirebaseAuthService>()),fenix: true);
-    Get.lazyPut(()=>LoginUseCase(authRepository: Get.find<AuthRepositoryImpl>()),fenix: true);
-    Get.lazyPut(()=>LoginComponentController( loginUseCase:Get.find<LoginUseCase>()),fenix: true);
+    Get.put(AuthRepositoryImpl(Get.find<FirebaseAuthService>()));
+    Get.put(LoginUseCase(authRepository: Get.find<AuthRepositoryImpl>()));
+    Get.put(LoginComponentController( loginUseCase:Get.find<LoginUseCase>()));
   }
 
 }

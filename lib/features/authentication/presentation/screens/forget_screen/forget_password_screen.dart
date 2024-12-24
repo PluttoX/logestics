@@ -8,14 +8,15 @@ class ForgetPasswordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var dpr=MediaQuery.of(context).devicePixelRatio;
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: Padding(padding: EdgeInsets.symmetric(vertical: 132/AdoptiveBreakPoint.dpr,
-            horizontal: 180/AdoptiveBreakPoint.dpr
+            child: Padding(padding: EdgeInsets.symmetric(vertical: 132/dpr,
+            horizontal: 180/dpr
             ),child:
 
                 MediaQuery.sizeOf(context).width < AdoptiveBreakPoint.medium

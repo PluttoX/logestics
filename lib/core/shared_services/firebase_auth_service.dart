@@ -36,9 +36,12 @@ Future<void> enableLocalPersistence({ Persistence persistence=Persistence.NONE})
   initialScreen(User? user) {
     if (user == null) {
       //login page
-      Get.offNamed(AppRoutes.login);
+      if(Get.currentRoute!=AppRoutes.login)
+      {Get.offAllNamed(AppRoutes.login);}
+
     } else {
-      Get.offAllNamed(AppRoutes.dashboard);
+      if(Get.currentRoute!=AppRoutes.dashboard){
+      Get.offAllNamed(AppRoutes.dashboard);}
     }
   }
 
@@ -54,4 +57,12 @@ Future<void> enableLocalPersistence({ Persistence persistence=Persistence.NONE})
       rethrow;
     }
   }
+  Future<void> signOut() async {
+    try {
+      await auth.signOut();
+    }catch(e){
+      rethrow ;
+    }
+  }
+
 }

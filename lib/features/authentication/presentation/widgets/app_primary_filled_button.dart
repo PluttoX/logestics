@@ -15,13 +15,13 @@ class AppPrimaryFilledButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var dpr=MediaQuery.of(context).devicePixelRatio;
     return FilledButton(
 
       onPressed: onPressed,
       style: ButtonStyle(
         minimumSize: WidgetStateProperty.all(
-          size ??
-              Size(259 / AdoptiveBreakPoint.dpr, 70 / AdoptiveBreakPoint.dpr),
+          size ,
         ),
       ),
       child: label,

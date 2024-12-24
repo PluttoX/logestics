@@ -19,10 +19,13 @@ class ForgetPasswordComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var dpr=MediaQuery.of(context).devicePixelRatio;
     final textTheme = Theme.of(context).textTheme;
     final colorScheme = Theme.of(context).colorScheme;
+    var screenWidth = MediaQuery.of(context).size.width;
+    var screenHeight = MediaQuery.of(context).size.height;
     return SizedBox(
-      width: 620 / AdoptiveBreakPoint.dpr,
+      width: 620 / dpr,
       //height: MediaQuery.sizeOf(context).height,
       child: Form(
         key: controller.forgetPasswordFormStateKey,
@@ -45,20 +48,20 @@ class ForgetPasswordComponent extends StatelessWidget {
               ],
             ),
             SizedBox(
-              height: 7 / AdoptiveBreakPoint.dpr,
+              height: 7 / dpr,
             ),
             Text(
               AppAuthenticationTextsExpended.forgetPasswordTitle,
               style: Theme.of(context).textTheme.displayLarge,
             ),
             SizedBox(
-              height: 55 / AdoptiveBreakPoint.dpr,
+              height: 55 / dpr,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 SizedBox(
-                  width: 493/AdoptiveBreakPoint.dpr,
+                  width: 493/dpr,
                   child:
                     Text(AppAuthenticationTextsExpended.subHeading,style: textTheme.titleMedium,),
 
@@ -66,7 +69,7 @@ class ForgetPasswordComponent extends StatelessWidget {
               ],
             ),
             SizedBox(
-              height: 10 / AdoptiveBreakPoint.dpr,
+              height: 10 / dpr,
             ),
 
             Row(
@@ -94,7 +97,7 @@ class ForgetPasswordComponent extends StatelessWidget {
               ],
             ),
             SizedBox(
-              height: 55 / AdoptiveBreakPoint.dpr,
+              height: 55 / dpr,
             ),
             Obx(
                   () => AppTextFormField(
@@ -106,7 +109,7 @@ class ForgetPasswordComponent extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 31 / AdoptiveBreakPoint.dpr,
+              height: 31 / dpr,
             ),
             Obx(() => controller.errorMessages['general'] == null
                 ? SizedBox()
@@ -116,7 +119,7 @@ class ForgetPasswordComponent extends StatelessWidget {
                 errorMessage:
                 controller.errorMessages['general'] ?? '')),
             SizedBox(
-              height: 64 / AdoptiveBreakPoint.dpr,
+              height: 64 / dpr,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -130,6 +133,7 @@ class ForgetPasswordComponent extends StatelessWidget {
                 ),
                 Obx(
                       () => AppPrimaryFilledButton(
+                        size:  Size(screenWidth * 0.14 , screenHeight * 0.08),
                     label: controller.isLoading.value
                         ? CircularProgressIndicator(
                       color: colorScheme.onPrimary,

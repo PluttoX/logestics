@@ -7,8 +7,9 @@ import '../../app_constants/colors/app_colors.dart';
 import 'light_text_theme.dart';
 
 class LightTheme {
-  static ThemeData lightTheme() => ThemeData.light(useMaterial3: true).copyWith(
-      textTheme: LightTextTheme.lightTextTheme,
+
+static  ThemeData lightTheme(double densityPixelRation) => ThemeData.light(useMaterial3: true).copyWith(
+      textTheme: LightTextTheme.lightTextTheme(densityPixelRation),
       colorScheme: LightColorScheme.lightColorScheme,
       scaffoldBackgroundColor: LightColorScheme.lightColorScheme.surface,
       filledButtonTheme: LightFilledButtonTheme.lightFilledButtonTheme,

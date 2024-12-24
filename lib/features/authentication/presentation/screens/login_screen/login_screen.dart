@@ -12,36 +12,25 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var screenWidth = MediaQuery.of(context).size.width;
+    var screenHeight = MediaQuery.of(context).size.height;
    var dpr= MediaQuery.of(context).devicePixelRatio;
     return SafeArea(
         child: Scaffold(
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Padding(
-            padding:EdgeInsets.only(left: 221/MediaQuery.of(context).devicePixelRatio,top: 10/2*dpr),
-            child: MediaQuery.sizeOf(context).width < AdoptiveBreakPoint.medium
-                ? Column(
-                    //crossAxisAlignment: CrossAxisAlignment.center,
-                    //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      body: Padding(
+            padding:EdgeInsets.symmetric(horizontal: screenWidth * 0.10),
+            child:  Row(
                     children: [
-                      OnBoardingComponent(),
-                      LoginComponent(),
-                    ],
-                  )
-                : Row(
-
-                    children: [
-                   OnBoardingComponent(),
-
-                     LoginComponent(),
+                   Expanded(child: OnBoardingComponent()),
+                       SizedBox(
+                        width: screenWidth * 0.2,
+                       ),
+                      Expanded(child: LoginComponent()),
 
                     ],
                   ),
           ),
         ),
-      ),
-    ));
+     );
   }
 }

@@ -6,20 +6,24 @@ import 'package:logestics/core/utils/app_constants/sizes/app_sizes_expended.dart
 import 'package:logestics/core/utils/app_constants/texts/app__authentication_texts_expended.dart';
 import '../../../../../../core/utils/app_constants/configrations/adoptive_break_point.dart';
 import '../../../widgets/on_boarding_card.dart';
+
 class OnBoardingComponent extends StatelessWidget {
   const OnBoardingComponent({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 524 / AdoptiveBreakPoint.dpr,
-     // height: MediaQuery.sizeOf(context).height,
+    var screenWidth = MediaQuery.of(context).size.width;
+    var screenHeight = MediaQuery.of(context).size.height;
+    var dpr = MediaQuery.of(context).devicePixelRatio;
+    return SingleChildScrollView(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const SizedBox(
-            height: 50 / AdoptiveBreakPoint.dpr,
+          SizedBox(
+            height: screenHeight * 0.03,
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               TextButton(
                 onPressed: () {
@@ -27,12 +31,15 @@ class OnBoardingComponent extends StatelessWidget {
                 },
                 child: Icon(
                   AppIconsDataExpended.navigationBackIcon,
-                  size: AppSizesExpended.navigationIconSize,
+                  size: screenHeight *
+                      0.006 *
+                      screenHeight *
+                      0.006 /*AppSizesExpended.navigationIconSize*/,
                 ),
               ),
-              const SizedBox(
-                width: 360 / AdoptiveBreakPoint.dpr,
-              ),
+              // SizedBox(
+              //   width: screenWidth * .17,
+              // ),
               TextButton(
                 onPressed: () {
                   //Todo 2 Navigation forward splash
@@ -41,42 +48,49 @@ class OnBoardingComponent extends StatelessWidget {
                   children: [
                     Text(
                       AppAuthenticationTextsExpended.next,
-                      style: Theme.of(context).textTheme.labelSmall
-                          ?.copyWith(color: Theme.of(context).colorScheme.primary),
+                      style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                          color: Theme.of(context).colorScheme.primary,
+                          fontSize: screenHeight * 0.004 * screenWidth * 0.004),
                     ),
                     Icon(AppIconsDataExpended.navigationForwardIcon,
-                        size: AppSizesExpended.navigationIconSize),
+                        size: screenHeight * 0.006 * screenHeight * 0.006),
                   ],
                 ),
               )
             ],
           ),
-          const SizedBox(
-            height: 40 / AdoptiveBreakPoint.dpr,
+          SizedBox(
+            height: screenHeight * .02,
           ),
           OnBoardingCard(
             title: AppAuthenticationTextsExpended.automateBusiness,
             paragraph: AppAuthenticationTextsExpended.text,
             imagePath: AppAssets.onBoardingPng1,
           ),
-          SizedBox(height: 31/AdoptiveBreakPoint.dpr,),
           SizedBox(
-            width: 300/AdoptiveBreakPoint.dpr,
-            child: Slider(value: 0.5, onChanged: (value){
-              //Todo 3 using introduction screen package to add onboarding functionalaty
-            },
+            height: screenHeight * .03,
+          ),
+          SizedBox(
+            width: screenWidth * .2,
+            child: Slider(
+              value: 0.5,
+              onChanged: (value) {
+                //Todo 3 using introduction screen package to add onboarding functionalaty
+              },
               divisions: 4,
-
-
-
             ),
           ),
           SizedBox(
-            height: 20/AdoptiveBreakPoint.dpr,
+            height: screenHeight * .02,
           ),
           Row(
             children: [
-              Text('@2025 PluttoX Software House',style: Theme.of(context).textTheme.headlineSmall,),
+              Flexible(
+                child: Text(
+                  AppAuthenticationTextsExpended.companySigne,
+                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontSize: screenHeight * 0.006 * screenHeight * 0.006),
+                ),
+              ),
             ],
           )
         ],
@@ -84,4 +98,3 @@ class OnBoardingComponent extends StatelessWidget {
     );
   }
 }
-

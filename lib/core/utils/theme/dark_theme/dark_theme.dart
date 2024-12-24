@@ -5,9 +5,10 @@ import '../../app_constants/colors/app_colors.dart';
 import 'dark_text_theme.dart';
 
 class DarkTheme {
-  static ThemeData darkTheme() => ThemeData.dark(useMaterial3: true).copyWith(
 
-    textTheme: DarkTextTheme.darkTextTheme,
+static   ThemeData darkTheme(double densityPixelRation) => ThemeData.dark(useMaterial3: true).copyWith(
+
+    textTheme: DarkTextTheme.darkTextTheme( densityPixelRation),
     colorScheme: DarkColorScheme.colorScheme,
     filledButtonTheme: DarkFilledButtonTheme.darkFilledButtonTheme
 

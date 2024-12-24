@@ -157,4 +157,17 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<void> enableLocalPersistence(persistence) async {
     await firebaseAuthService.enableLocalPersistence(persistence: persistence);
   }
+  @override
+  Future<Either<AuthFailure, void>> signOut() async {
+    try {
+      await firebaseAuthService.signOut(); // Call to FirebaseAuthService
+      return const Right(null); // Sign out successful
+    } on TimeoutException catch (e) {
+      return Left(AuthFailure(
+          message: "Timeout occurred: ${e.message ?? "unknown"}"));
+    } catch (e) {
+      return Left(AuthFailure(message: "Unexpected error: ${e.toString()}"));
+    }
+  }
+
 }

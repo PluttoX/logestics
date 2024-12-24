@@ -7,4 +7,5 @@ abstract class AuthRepository {
   Future<Either<AuthFailure,UserCredential>> login(String email, String password);
   Future<Either<AuthFailure, void>> sendPasswordResetEmail(String email);
   Future<void> enableLocalPersistence(Persistence persistence); // New method
+  Future<Either<AuthFailure, void>> signOut(); // Added for sign out
 }

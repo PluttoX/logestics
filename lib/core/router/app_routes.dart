@@ -1,5 +1,6 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
-import 'package:logestics/features/dashboard/presentation/screens/dashbaord_screen/dash_board_screen.dart';
+import 'package:logestics/features/dashboard/bindings/dashboard_screen_controller_bindings.dart';
+import 'package:logestics/features/dashboard/presentation/screens/dashboard_screen/dashboard_screen.dart';
 import '../../features/authentication/bindings/forget_component_controller_binding.dart';
 import '../../features/authentication/bindings/login_component_controller_binding.dart';
 import '../../features/authentication/presentation/screens/forget_screen/forget_password_screen.dart';
@@ -21,12 +22,13 @@ class AppRoutes {
     GetPage(
       name: forgotPassword,
       page: () => ForgetPasswordScreen(),
-      binding: ForgetPasswordComponentControllerBinding()
+      binding: ForgetPasswordComponentControllerBinding(),
     ),
     GetPage(
       name: dashboard,
-      page: () => DashBoardScreen(),
+      page: () => DashboardScreen(),
       middlewares: [AuthMiddleware()],
+      bindings: [DashboardScreenControllerBindings()]
     ),
   ];
 }

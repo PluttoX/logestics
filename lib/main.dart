@@ -18,11 +18,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return GetMaterialApp(
       initialRoute:AppRoutes.root,
        initialBinding: AuthenticationDependencyInjection(),
-        theme: AppTheme.lightTheme(),
-        darkTheme: AppTheme.darkTheme(),
+        theme: AppTheme.lightTheme(MediaQuery.of(context).devicePixelRatio),
+        darkTheme: AppTheme.darkTheme(MediaQuery.of(context).devicePixelRatio),
         themeMode: ThemeMode.system,
         getPages: AppRoutes.getPages,
     debugShowCheckedModeBanner: false,

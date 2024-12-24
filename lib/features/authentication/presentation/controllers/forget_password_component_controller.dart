@@ -1,11 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:logestics/core/router/app_routes.dart';
-import 'package:logestics/core/utils/app_constants/icons/app_icons_data_expended.dart';
-import 'package:logestics/core/utils/app_constants/sizes/app_sizes_expended.dart';
 import 'package:logestics/core/utils/app_constants/texts/app__authentication_texts_expended.dart';
-import 'package:url_launcher/url_launcher.dart';
 import '../../../../core/utils/helpers/url_louncher_helper.dart';
 import '../../domain/useCases/forget_password_use_case.dart';
 
@@ -56,8 +52,10 @@ class ForgetPasswordComponentController extends GetxController {
             (_) {
               errorMessages.clear(); // Clear all errors on success
               isLoading.value = false;
-          Get.offNamedUntil(AppRoutes.login, (route) => false);
-             showResetEmailSendSnackBar(email);
+             // Get.back();
+             // Get.back();
+              Get.until((route)=>route.settings.name=='/login');
+              showResetEmailSendSnackBar(email);
 
             },
       );
@@ -68,6 +66,8 @@ class ForgetPasswordComponentController extends GetxController {
   void showResetEmailSendSnackBar(String email) {
     final textTheme = Theme.of(Get.context!).textTheme;
     final colorScheme = Theme.of(Get.context!).colorScheme;
+    final  screenWidth = MediaQuery.of(Get.context!).size.width;
+    final  screenHeight = MediaQuery.of(Get.context!).size.height;
     final String url = 'https://$email'; // Replace with your URL logic
 
     Get.snackbar(
@@ -78,8 +78,8 @@ class ForgetPasswordComponentController extends GetxController {
       isDismissible: true, // Allows manual dismissal
       duration: null, // Keeps the Snackbar displayed until dismissed
       backgroundColor: colorScheme.tertiary, // Set a background color
-      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10), // Add margin for better alignment
-      padding: const EdgeInsets.all(16), // Padding inside the Snackbar
+      margin: EdgeInsets.symmetric(horizontal: screenWidth*.02, vertical:screenHeight*.02 ), // Add margin for better alignment
+      padding:  EdgeInsets.all(screenWidth*.002*screenHeight*.002), // Padding inside the Snackbar
       //maxWidth: Get.width * 0.5, // Reduce width to half of the screen
       borderRadius: 12, // Rounded corners
       mainButton: TextButton(
@@ -92,35 +92,42 @@ class ForgetPasswordComponentController extends GetxController {
       ),
       titleText: Text(
         AppAuthenticationTextsExpended.resetEmailTitle, // Use static string
-        style: textTheme.titleLarge,
+        style: textTheme.titleLarge?.copyWith(
+        fontSize:     screenHeight * 0.0042 * screenWidth * 0.0042
+        )
       ),
       messageText: Row(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          Text(
-            AppAuthenticationTextsExpended.resetEmailMessage, // Use static string
-            style: textTheme.titleMedium,
-          ),
-          TextButton(
-            onPressed: () async {
-              final Uri httpUri = Uri.parse(url);
-              Get.back();
-              try {
-                await UrlLauncherHelper.openUrl(url);
-              } catch (e) {
-                ScaffoldMessenger.of(Get.context!).showSnackBar(
-                  SnackBar(
-                    content: Text('${AppAuthenticationTextsExpended.errorOpeningLink}: $e'),
-                    backgroundColor: Colors.red,
-                  ),
-                );
-              }
-            },
+          Flexible(
             child: Text(
-              email,
-              style: textTheme.labelLarge?.copyWith(
-                color: colorScheme.primary,
-                decoration: TextDecoration.underline,
+              AppAuthenticationTextsExpended.resetEmailMessage, // Use static string
+              style: textTheme.titleMedium,
+            ),
+          ),
+          Flexible(
+            child: TextButton(
+              onPressed: () async {
+                final Uri httpUri = Uri.parse(url);
+                Get.back();
+                try {
+                  await UrlLauncherHelper.openUrl(url);
+                } catch (e) {
+                  ScaffoldMessenger.of(Get.context!).showSnackBar(
+                    SnackBar(
+                      content: Text('${AppAuthenticationTextsExpended.errorOpeningLink}: $e'),
+                      backgroundColor: Colors.red,
+                    ),
+                  );
+                }
+              },
+              child: Text(
+                email,
+                style: textTheme.labelLarge?.copyWith(
+                  color: colorScheme.primary,
+                  fontSize:  screenHeight * 0.004 * screenWidth * 0.004,
+                  decoration: TextDecoration.underline,
+                ),
               ),
             ),
           ),

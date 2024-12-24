@@ -7,6 +7,8 @@ class AppErrorContainer extends StatelessWidget {
   @override
   @override
   Widget build(BuildContext context) {
+    var screenWidth = MediaQuery.of(context).size.width;
+    var screenHeight = MediaQuery.of(context).size.height;
     final textTheme = Theme.of(context).textTheme;
     final colorScheme = Theme.of(context).colorScheme;
 
@@ -21,7 +23,8 @@ class AppErrorContainer extends StatelessWidget {
           child: Center(
             child: Text(
               errorMessage,
-              style: textTheme.labelMedium?.copyWith(color: colorScheme.onError),
+              style: textTheme.labelMedium?.copyWith(color: colorScheme.onError,fontSize: screenHeight * 0.0046 * screenWidth * 0.0046,
+              ),
             ),
           ),
         );
