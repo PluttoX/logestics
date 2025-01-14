@@ -40,8 +40,8 @@ Future<void> enableLocalPersistence({ Persistence persistence=Persistence.NONE})
       {Get.offAllNamed(AppRoutes.login);}
 
     } else {
-      if(Get.currentRoute!=AppRoutes.dashboard){
-      Get.offAllNamed(AppRoutes.dashboard);}
+      if(Get.currentRoute!=AppRoutes.home){
+      Get.offAllNamed(AppRoutes.home);}
     }
   }
 
@@ -51,7 +51,7 @@ Future<void> enableLocalPersistence({ Persistence persistence=Persistence.NONE})
       // Attempt to sign in with email and password
      var result=  await auth.signInWithEmailAndPassword(email: email, password: password);
      return result;
-    } on FirebaseAuthException catch (e) {
+    } on FirebaseAuthException {
       rethrow;
     }catch (e){
       rethrow;

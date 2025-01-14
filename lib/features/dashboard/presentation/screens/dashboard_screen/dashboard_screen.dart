@@ -6,8 +6,6 @@ import '../../../../slab_management/presentation/screens/slab_management_screen/
 import '../../controllers/dashboard_screen_controller.dart';
 import '../home_screen/home_screen.dart';
 
-
-
 class DashboardScreen extends StatelessWidget {
   final  controller =Get.find<DashboardScreenController>();
 

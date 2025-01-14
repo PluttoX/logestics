@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 class SlabDetailsScreen extends StatelessWidget {
   final String slabName;
-  SlabDetailsScreen({required this.slabName});
+  const SlabDetailsScreen({super.key, required this.slabName});
 
   @override
   Widget build(BuildContext context) {

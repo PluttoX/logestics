@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:logestics/features/slab_management/presentation/controllers/slab_management_screen_controller.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 class AddSlabScreen extends StatelessWidget {
   final  slabController = Get.find<SlabManagementScreenController>();
   final TextEditingController slabNameController = TextEditingController();
+
+  AddSlabScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

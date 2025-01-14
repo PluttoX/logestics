@@ -1,4 +1,3 @@
-import '../configrations/adoptive_break_point.dart';
 
 class AppSizesExpended {
 

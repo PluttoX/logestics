@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
-import '../../../../core/utils/app_constants/configrations/adoptive_break_point.dart';
 class OnBoardingCard extends StatelessWidget {
   const OnBoardingCard(
       {super.key,

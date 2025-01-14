@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:logestics/core/utils/app_constants/app_assets/app_assets.dart';
 import 'package:logestics/core/utils/app_constants/icons/app_icons_data_expended.dart';
-import 'package:logestics/core/utils/app_constants/sizes/app_sizes_expended.dart';
 import 'package:logestics/core/utils/app_constants/texts/app__authentication_texts_expended.dart';
-import '../../../../../../core/utils/app_constants/configrations/adoptive_break_point.dart';
 import '../../../widgets/on_boarding_card.dart';
 
 class OnBoardingComponent extends StatelessWidget {

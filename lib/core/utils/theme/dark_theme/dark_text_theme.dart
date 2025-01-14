@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../app_constants/configrations/adoptive_break_point.dart';
 import '../../app_constants/fonts/app_fonts.dart';
 import 'dark_color_scheme.dart';
 

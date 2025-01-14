@@ -64,7 +64,8 @@ class LoginComponentController extends GetxController {
     final email = emailTextController.text.trim();
     final password = passwordTextController.text.trim();
 
-    if (loginFormStateKey.currentState?.validate() ?? false) {
+    if (loginFormStateKey.currentState?.validate() ?? false)
+    {
       // Perform login using the LoginUseCase
       final result =
           await _loginUseCase.execute(email, password, isRememberMeMark.value);
@@ -93,7 +94,9 @@ class LoginComponentController extends GetxController {
           isLoading.value = false;
         },
       );
-    } else {
+    }
+    else
+    {
       isLoading.value = false;
     }
   }

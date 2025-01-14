@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:logestics/core/shared_features/theme_management/presentation/controllers/theme_controller.dart';
 
-import '../../../../../../core/utils/app_constants/configrations/adoptive_break_point.dart';
 import '../../../../../../core/utils/app_constants/icons/app_icons_data_expended.dart';
 import '../../../../../../core/utils/app_constants/sizes/app_sizes_expended.dart';
 import '../../../../../../core/utils/app_constants/texts/app__authentication_texts_expended.dart';

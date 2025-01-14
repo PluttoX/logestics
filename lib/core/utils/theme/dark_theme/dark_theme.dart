@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:logestics/core/utils/theme/dark_theme/dark_color_scheme.dart';
 import 'package:logestics/core/utils/theme/dark_theme/dark_filled_button_theme.dart';
-import '../../app_constants/colors/app_colors.dart';
 import 'dark_text_theme.dart';
 
 class DarkTheme {
